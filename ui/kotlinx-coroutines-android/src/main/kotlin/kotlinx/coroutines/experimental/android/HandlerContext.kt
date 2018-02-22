@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@file:JvmName("HandlerContext")
 
 package kotlinx.coroutines.experimental.android
 
@@ -26,11 +27,13 @@ import kotlin.coroutines.experimental.CoroutineContext
 /**
  * Dispatches execution onto Android main UI thread and provides native [delay][Delay.delay] support.
  */
+@JvmField
 val UI = HandlerContext(Handler(Looper.getMainLooper()), "UI")
 
 /**
  * Represents an arbitrary [Handler] as a implementation of [CoroutineDispatcher].
  */
+@JvmName("from")
 fun Handler.asCoroutineDispatcher() = HandlerContext(this)
 
 private const val MAX_DELAY = Long.MAX_VALUE / 2 // cannot delay for too long on Android
